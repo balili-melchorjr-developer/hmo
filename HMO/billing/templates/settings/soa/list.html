@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<a href="{% url 'create-hmo' %}">Create New HMO</a>
+
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+                    <th>SOA Number</th>
+                    <th>Patient</th>                 
+					<th>Date Created</th>
+					<th>Status</th>
+					<th>Update</th>
+					<th>Delete</th>
+				</tr>
+				
+				{% for item in soas %}
+				<tr>
+                    <td><a href="{% url 'soa-detail' item.soa_number %}">{{ item.soa_number }}</a></td>
+                    <td>{{ item.hmo_bill.patient.last_name }}, {{ item.hmo_bill.patient.first_name }}</td>
+                    <td>{{ item.date_created|date }}</td>
+					{% if item.status %}
+						<td>Active</td>
+					{% else %}
+						<td>Inactive</td>
+                    {% endif %}
+					<td><a class="btn btn-sm btn-info" href="#">Update</a></td>
+					<td><a class="btn btn-sm btn-danger" href="#">Delete</a></td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+ 
+{% endblock %}

@@ -1,0 +1,57 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS CDN -->    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <!-- Datatable CSS and CDN-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">     
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/editor.bootstrap4.min.css' %}"> -->
+
+    <!-- Custom CSS // This where your own style go -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+
+    <!-- CSS For Autolight Complete-->
+    <link src="{% static 'vendor/select2/dist/css/select2.css' %}" type="text/css" media="all" rel="stylesheet"/>
+    <link src="{% static 'autocomplete_light/select2.css' %}" type="text/css" media="all" rel="stylesheet"/>
+
+    <!-- Just load the JQuery-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+
+
+    <title>HMO Company</title>
+
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="custom-sidebar col-md-2">
+          {% block sidebar %}
+
+          {% include "sidebar.html" %}
+        </div>
+          {% endblock %}      
+        <div class="custom-block col-md-10">      
+          {% block content %}
+
+          {% endblock %}   
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {% include "js.html" %}
+  </body> 
+</html>

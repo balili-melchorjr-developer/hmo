@@ -1,0 +1,99 @@
+
+
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+
+
+    <title>Welcome to Adventist Med:HMO! Sign Up Now!</title>
+  </head>
+  <body id="signup">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="col-md-5 ml-md-auto create-an-account">
+                    <h3>Create an account</h3>
+                    <p>Already have an account? <span><a href="{% url 'signin' %}">Sign In</a></span></p>
+                    <form method="POST" action="">
+                      {% csrf_token %}
+                      {{ form.non_field_errors }}
+                      <div class="form-group">
+                        
+                        
+                        <label for="">Email</label>
+                        <div class="input-create-account input-email">{{ form.email }}</div>
+                        <small class="form-text text-danger">{{ form.email.errors }}</small>
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label for="">Last Name</label>
+                            <div class="input-create-account input-email">{{ form.last_name }}</div>
+                         </div>
+                         <div class="col-md-6">
+                          <label for="">First Name</label>
+                          <div class="input-create-account input-email">{{ form.first_name }}</div>
+                       </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <label for="">Date of Birth</label>
+                            <div class="row">
+                              <div class="col-md-4">
+                                <small>Month</small>
+                              </div>
+                              <div class="col-md-4">
+                                <small>Day</small>
+                              </div>
+                              <div class="col-md-4">
+                                <small>Year</small>
+                              </div>
+                            </div>
+                            <div class="input-create-account input-email">{{ form.date_of_birth }}</div>
+                         </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="">Password</label>
+                        <div class="input-create-account input-email">{{ form.password1 }}</div>
+ 
+                      </div>
+                      <div class="form-group">
+                        <label for="">Confirm Password</label>
+                        <div class="input-create-account input-email">{{ form.password2 }}</div>
+                        <small id="" class="form-text text-danger">{{ form.password2.errors }}</small>                       
+                      </div>
+                      
+                      <button type="submit" class="btn btn-create-account">Create account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script>
+      console.log(form.error)
+   </script> 
+ 
+ 
+  </body>
+</html>

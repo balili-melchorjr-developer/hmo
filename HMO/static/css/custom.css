@@ -1,0 +1,428 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+hr{
+    background-color:white;
+}
+
+.custom-navbar{
+    background-color: white!important;
+    color: black!important;
+    box-shadow: 0px -6px 10px 0px rgba(0,0,0,0.75);
+}
+
+.custom-navbar .user{
+    color:#625AD8!important;
+    margin-top: 15%;
+    position: relative;
+    left: -10%;
+    font-size: 110%;
+}
+
+.custom-navbar .nav-item span{
+    font-weight: 700;
+}
+
+.account-img{
+    border-radius: 50%;
+    height: 70px;
+}
+
+.custom-dropdown-menu{
+    text-align: center;
+    left: -200%;
+}
+
+.custom-dropdown-menu a{
+    color:#474747;
+}
+
+.sign-out{
+    color:#DD4470!important;
+}
+
+#logo{
+    height:60px;
+    margin-right:25px;
+}
+
+#signup{
+    background: url("/static/image/tyler-franta-iusJ25iYu1c-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.create-an-account{
+    background-color:white;
+    border-radius: 3px;
+    border:none;
+    padding: 2% 5%;
+    margin-top:5%;
+}
+
+.create-an-account .form-group{
+    margin-bottom: 2rem;
+}
+
+.create-an-account label{
+    font-weight: bold;
+}
+
+.create-an-account form{
+    margin-top: 5%;
+}
+
+.create-an-account ul{
+    list-style: none;
+    padding: 0;
+}
+
+.create-an-account h3{
+    font-weight: 900;
+    margin-top: 5%;
+}
+
+.btn-create-account{
+    border-radius: 18px;
+    background-color: #006FFF;
+    color: white;
+    text-align: center;
+    position: relative;
+    left:50%;
+    width: 50%;
+    margin-top:10%;
+}
+
+.btn-signin{
+    border-radius: 18px;
+    background-color: #006FFF;
+    color: white;
+    text-align: center;
+    width: 50%;
+    margin-top:10%;
+}
+
+.signin-center{
+    position: relative;
+    left: 25%;
+}
+
+.forgot-password{
+        margin-top: 5%;
+        margin-left: 8%;
+}
+
+.signin-center a{
+    color: #707070;
+}
+
+.create-an-account #id_email, .create-an-account #id_last_name, .create-an-account #id_first_name, .create-an-account #id_password1, .create-an-account #id_password2{
+    border: 0;
+    outline: 0;
+    background:transparent;
+    border-bottom: 1px solid #707070;
+    width: 100%;
+}
+
+.create-an-account #id_date_of_birth_month, .create-an-account #id_date_of_birth_day, .create-an-account #id_date_of_birth_year{
+border: 0;
+outline: 0;
+background:transparent;
+border-bottom: 1px solid #707070;
+width: 25%;
+margin-right: 5%;
+}
+
+#id_date_of_birth_day, #id_date_of_birth_year{
+    margin: 0 5%;
+    border: 0;
+    outline: 0;
+    background:transparent;
+    border-bottom: 1px solid #707070;
+    width: 25%;
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.professional{
+    display: none;
+}
+
+/* -------------------------------------- Global Customs ----------------------------------- */
+
+.modal-lg{
+    max-width: 80%!important;
+}
+
+.hmo-custom-btn-success{
+    color:#15CDCA;
+    background-color: white;
+    border:1px solid #15CDCA;
+}
+
+.hmo-custom-btn-success:hover{
+    color:white;
+    background-color: #15CDCA;
+    border:1px solid white;
+}
+
+.hmo-custom-btn-update{
+    border:1px solid #8A37DB;
+    color:#8A37DB;
+    background-color: white;
+}
+
+.hmo-custom-btn-update:hover{
+    background-color:#8A37DB;
+    color:white;
+}
+
+.hmo-custom-btn-delete{
+    border: 1px solid #DD4470;
+    color: #DD4470;
+}
+
+.hmo-custom-btn-delete:hover{
+    color:white;
+    background-color: #DD4470;
+}
+
+.hmo-custom-btn-cancel{
+    color: #474747;
+    margin-left:18px;
+    
+}
+
+.hmo-custom-btn-cancel:hover{
+    color: #474747;
+}
+
+.hmo-custom-table{
+    box-shadow: 1px 3px 8px -6px rgba(0,0,0,0.75);
+    border-radius: 1%;
+    padding:20px;
+    width: 95%!important;
+    margin-top:3%!important;
+
+}
+
+.hmo-custom-table span{
+    margin:0 2%;
+}
+
+.hmo-custom-modifier-right{
+    text-align: right;
+}
+
+.asteriskField{
+    color:red!important;
+}
+
+.select2-container--default .select2-selection--single{
+    min-height: 2.2em;
+    border-color: #ced4da!important;
+}
+
+.select2-container--open .select2-dropdown--below{
+    top: -1.8em;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    line-height: 22px!important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    display: none!important;
+}
+
+.select2-results{
+    font-size:15px;
+}
+
+#div_id_item .select2-container {
+    min-width: 15em!important;
+}
+
+
+/* -------------------------------- Create HMO Bill ---------------------------------- */
+
+.create-hmo-bill .form-control-sm{
+    border-radius: 0px!important;
+}
+
+
+.create-hmo-bill .custom-margin-top{
+    margin-top:-30px;
+}
+
+.create-hmo-bill .custom-margin-top label{
+    margin-bottom: -10px;
+    font-size:15px;
+}
+
+.hmo-bill-report-hmo-description, .hmo-bill-report-patient-name{
+    text-transform: uppercase;
+}
+
+#create-hmo-bill-table{
+    margin-top:0px!important;
+}
+
+
+
+
+
+
+
+table.dataTable.no-footer {
+    border-bottom: 0 !important;
+}
+
+.solid-sample td{
+    border-top: 3px solid black;
+}
+
+.report-header{
+    text-align: center;
+}
+
+/* -------------------------------- Side Bar ---------------------------------- */
+
+
+.custom-sidebar{
+    background-color: #4F80E2;
+    height: auto;
+    box-shadow: 0px 0px -6px 0px rgba(0,0,0,0.75);
+    color:white;
+}
+
+.sidebar-detail{
+    margin-top:20%;
+    margin-left: 20%;
+    text-align: justify;
+    margin-bottom: 25%;
+}
+
+.sidebar-dashboard a{
+    color:white!important;
+}
+
+.sidebar-detail h6{
+    margin-top: 10%;
+    font-weight: 600;
+}
+
+.custom-sidebar img{
+    border-radius: 50%;
+    width: 80%;
+}
+
+.sidebar-dashboard h6{
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 1.3rem;
+}
+
+.sidebar-settings, .sidebar-dashboard{
+    padding-left:12px;
+}
+
+.sidebar-settings a{
+    color:white;
+}
+
+.sidebar-settings li, .sidebar-dashboard li{
+    color:white;
+    margin-bottom: 10px!important;
+}
+
+
+.sidebar-settings h6, .sidebar-dashboard h6{
+    margin-top:25px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 1.3rem;
+}
+
+.custom-block{
+    padding:25px;
+}
+
+
+/* --------------------------------   -------------------------------*/
+
+
+#total-entry{
+    background-color: #7339AB;
+    border:0px;
+    box-shadow: 1px 3px 8px -6px rgba(0,0,0,0.75);
+    width: 200px;
+}
+
+#total-encoded{
+    background-color: #1F9CE4;
+    border:0px;
+    box-shadow: 1px 3px 8px -6px rgba(0,0,0,0.75);
+    width: 200px;
+}
+
+#total-pending{
+    background-color: #15CDCA;
+    border:0px;
+    box-shadow: 1px 3px 8px -6px rgba(0,0,0,0.75);
+    width: 200px;
+}
+
+#total-billed{
+    background-color: #3E54DE;
+    border:0px;
+    box-shadow: 1px 3px 8px -6px rgba(0,0,0,0.75);
+    width: 200px;
+}
+
+.recently-table{
+    padding:10px;
+    box-shadow: 1px 3px 8px -6px rgba(0,0,0,0.75);
+    border-radius: 1%;
+    font-size:15px;
+    color: #474747;
+}
+
+.status-encoded{
+    display: inline-block;
+    width: 100%;
+    background-color:#1F9CE4 ;
+    text-align: center;
+    color: white;
+    border-radius: 18px;
+    font-size: 13px;
+}
+
+.status-pending{
+    display: inline-block;
+    width: 100%;
+    background-color:#15CDCA ;
+    text-align: center;
+    color: white;
+    border-radius: 18px;
+    font-size: 13px;
+}
+
+.status-billed{
+    display: inline-block;
+    width: 100%;
+    background-color:#1F9CE4 ;
+    text-align: center;
+    color: white;
+    border-radius: 18px;
+    font-size: 13px;
+}
+
+.remove > th{
+    border-color:#707070!important;
+}

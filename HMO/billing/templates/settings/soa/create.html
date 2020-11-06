@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<a href="{% url 'soa-list' %}">Report</a>
+
+
+<form method="POST" action="">
+{% csrf_token %}
+<div class="row">
+    <h5>Change Status:  </h5>
+    
+</div>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm" >
+				<tr>
+                    <th><input type="checkbox" name="checks" id="checkbox-all"/></th>
+					<th>Utility Date</th>
+                    <th>Approval Number</th>
+                    <th>HMO</th>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Status</th>
+					<th>Update</th>
+					<th>Delete</th>
+				</tr>           
+				{% for hmo_bill in hmo_bills %}
+				<tr>
+                    <td><input id="{{ hmo_bill.id }}" class="checkbox" type="checkbox" name="check-status" value="{{ hmo_bill.id }}"/></td>
+					<td>{{ hmo_bill.utility_date }}</td>
+                    <td>{{ hmo_bill.approval_number }}</td>
+                    <td>{{ hmo_bill.hmo.description }}</td>	
+                    <td>{{ hmo_bill.patient }}</td>	
+                    <td>{{ hmo_bill.doctor.last_name }}</td>
+                    <td>{{ hmo_bill.bill_status }}</td>				
+					<td><a class="btn btn-sm btn-info" href="{% url 'update-hmo-bill' hmo_bill.slug %}">Update</a></td>
+					<td><a class="btn btn-sm btn-danger" href="{% url 'delete-hmo-bill' hmo_bill.slug %}">Delete</a></td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+<button class="btn btn-success">Update</button>
+<button class="btn">Cancel</button>
+</form>
+
+ 
+{% endblock %}

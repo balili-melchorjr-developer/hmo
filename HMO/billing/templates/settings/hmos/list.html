@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<a class="btn hmo-custom-btn-success offset-md-10" href="{% url 'create-hmo' %}">Create New HMO</a>
+
+
+		<table class="nowrap hmo-custom-table" id="hmos-table">
+			<thead>
+				<tr>
+					<th>Code</th>
+					<th>Description</th>
+					<th>Status</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>	
+				{% for hmo in hmos %}
+				<tr>
+					<td>{{ hmo.code }}</a></td>
+					<td><a href="{% url 'hmo-detail' hmo.slug %}">{{ hmo.description }}</a></td>
+					{% if hmo.status %}
+						<td>Active</td>
+					{% else %}
+						<td>Inactive</td>
+					{% endif %}
+					<td class="hmo-custom-modifier-right"><a class="btn btn-sm hmo-custom-btn-update" href="{% url 'update-hmo' hmo.slug %}">Update</a><span></span><a class="btn btn-sm hmo-custom-btn-delete" href="{% url 'delete-hmo' hmo.slug %}">Delete</a></td>
+					
+				</tr>
+				{% endfor %}
+			</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+ 
+{% endblock %}

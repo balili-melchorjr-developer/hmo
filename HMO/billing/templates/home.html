@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% include "navbar.html" %}
+
+{% block content %}
+
+<h3>This Month</h3>
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-entry"> 
+                <div class="card-body">
+                    <h6 class="card-title">Total Entry</h6>
+                    <h3 class="card-title">{{ hmo_bill_total_entry }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-encoded">
+                <div class="card-body">
+                   <h6 class="card-title">Encoded</h6>                
+                    <h3 class="card-title">{{ hmo_bill_encoded }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-pending">
+                <div class="card-body">
+                    <h6 class="card-title">Pending</h6>
+                    <h3 class="card-title">{{ hmo_bill_pending }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-billed">               
+                <div class="card-body">
+                    <h6 class="card-title">Billed</h6>
+                    <h3 class="card-title">{{ hmo_bill_billed }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+<h3>Recently Orders</h3>
+<div>
+<table class="recently-table nowrap" id="hmo-bill-total">
+    <thead>
+        <tr class="remove">
+            <th >Approval Number</th>
+            <th>HMO</th>
+            <th>Patient</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Encoder</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in hmo_bill %}
+        <tr>
+            
+            <td>{{ item.approval_number }}</td>
+            <td>{{ item.hmo.description }}</td>
+            <td>{{ item.patient.last_name }}, {{ item.patient.first_name }}</td>
+            {% if item.bill_status == 'Encoded' %}
+                <td><span class="status-encoded">Encoded</span></td>
+            {% elif item.bill_status == 'Pending' %}
+                <td><span class="status-pending">Pending</span></td>
+            {% else %}
+                <td><span class="status-billed">Billed</span></td>
+            {% endif %}
+            <td>{{ item.date_modified|date }}</td>
+            <td>{{ item.user.last_name }}, {{ item.user.first_name}}</td>
+            
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+
+{% endblock %}

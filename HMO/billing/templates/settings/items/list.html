@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<a class="btn hmo-custom-btn-success offset-md-10" href="{% url 'create-item' %}">Create New Item</a>
+
+
+
+			<table class="nowrap hmo-custom-table" id="items-table">
+				<thead>
+				<tr>
+					<th>Code</th>
+					<th>Description</th>
+					<th>Status</th>
+					<th></th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for item in items %}
+				<tr>
+					<td>{{ item.code }}</a></td>
+					<td><a href="{% url 'item-detail' item.slug %}">{{ item.description }}</a></td>
+					{% if item.status %}
+						<td>Active</td>
+					{% else %}
+						<td>Inactive</td>
+					{% endif %}
+					<td class="hmo-custom-modifier-right"><a class="btn btn-sm hmo-custom-btn-update" href="{% url 'update-item' item.slug %}">Update</a><span></span><a class="btn btn-sm hmo-custom-btn-delete" href="{% url 'delete-item' item.slug %}">Delete</a></td>
+					
+				</tr>
+				{% endfor %}
+			</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+ 
+{% endblock %}

@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<a class="btn btn-success hmo-custom-btn-success offset-md-10" href="{% url 'create-patient' %}">Create Patient</a>
+
+<div class="row">
+	<div class="col-md-12">
+			<table class="nowrap hmo-custom-table" id="patients-table">
+				<thead>
+				<tr class="remove">
+					<th>Name</th>
+					<th></th>
+				</tr>
+			</thead>				
+			<tbody>
+				{% for patient in patients %}
+				<tr>
+					<td><a href="{% url 'patient-detail' patient.slug %}">{{ patient.last_name }}, {{ patient.first_name }}</a></td>
+					
+					<td class="hmo-custom-modifier-right"><a class="btn btn-sm hmo-custom-btn-update" href="{% url 'update-patient' patient.slug %}">Update</a><span></span><a class="btn btn-sm hmo-custom-btn-delete" href="{% url 'delete-patient' patient.slug %}">Delete</a></td>
+					
+				</tr>	
+				{% endfor %}
+			</tbody>
+			</table>
+	</div>
+</div>
+
+ 
+{% endblock %}

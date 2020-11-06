@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="POST" action="">
+    {% csrf_token %}
+
+    <h3>Are you sure you want to delete this {{ patient.last_name }} {{ patient.first_name }} {{ patient.specialization }}</h3>
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url 'patient-list' %}">Cancel</a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,540 @@
+{% load static %}
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/plug-ins/1.10.12/sorting/datetime-moment.js"></script>
+
+
+<script type="text/javascript" charset="utf8" src="{% static 'js/printThis.js' %}"></script>
+<!-- <script type="text/javascript" charset="utf8" src="{% static 'js/dataTables.editor.js' %}"></script>
+<script type="text/javascript" charset="utf8" src="{% static 'js/editor.bootstrap4.min.js' %}"></script> -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+
+
+<script>
+    function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+    const csrftoken = getCookie('csrftoken');
+
+    // function jsUpdateHMO(e){
+    //             $.ajax({
+    //             url: $(e).attr("data-url"),
+    //             type: 'get',
+    //             dataType: 'json',
+    //             beforeSend: function () {                    
+    //                 $("#update-hmo-bill-modal").modal("show");
+                    
+                    
+    //             },
+    //             success: function (data) {
+    //                 $("#update-hmo-bill-modal .modal-content").html(data.html_form);
+    //             }
+    //         });
+    //     } 
+
+    function jsDeleteHMO(e){
+                $.ajax({
+                url: $(e).attr("data-url"),
+                type: 'get',
+                dataType: 'json',
+                beforeSend: function () {                    
+                    $("#update-hmo-bill-modal").modal("show");
+                    
+                    
+                },
+                success: function (data) {
+                    $("#update-hmo-bill-modal .modal-content").html(data.html_form);
+                }
+            });
+        }       
+
+    // $(document).ready(function(){
+
+    //     var table = $('#create-hmo-bill-table').DataTable({
+    //     // serverSide: true,
+    //     dom: "Bfrtip",
+    //     ajax: {
+    //         url: "/api/billing/hmo/?format=datatables",
+    //         type: 'GET',
+    //     },
+    //     dataSrc: "",
+         
+    //     columns: [
+            
+    //         {"data":"utility_date", "render": function(d){
+    //             return moment(d).format('MM/DD/YYYY')
+    //         }},
+
+    //         {"data":"approval_number"},
+    //         {"data":"hmo_description"},
+    //         {"data":"patient_fullname"},
+    //         {"data": "slug", render: function(data, type, full, meta){
+                
+    //             let urlerr = `
+    //                 {% url 'update-hmo-bill-modal' 'removethis' %}
+    //             `
+    //             let url_split = urlerr.split('/')
+
+    //             let final_url = `
+    //                 ${url_split[0]}/${url_split[1]}/${url_split[2]}/${url_split[3]}/${data}/update
+    //             `
+    //             if (type === 'display'){
+    //                 data = `
+    //                     <button class="btn btn-sm btn-info" onclick="jsUpdateHMO(this)" data-url="${final_url}">Update</button>
+
+    //                  `
+                    
+
+    //             } //onclick="jsUpdateHMO(this)"
+    //             return data;
+    //         }
+    //         }
+            
+    //         ],
+
+    //         info: false,
+    //         searching: false,
+    //         ordering: false,
+
+    //     });
+    // });
+
+    $(document).ready(function(){
+
+    var table = $('#create-hmo-bill-table').DataTable({
+    // serverSide: true,
+    dom: "Bfrtip",
+    ajax: {
+        url: "/api/billing/hmo/?format=datatables",
+        type: 'GET',
+    },
+    dataSrc: "",
+    
+    columns: [
+        
+        {"data":"utility_date", "render": function(d){
+            return moment(d).format('MM/DD/YYYY')
+        }},
+
+        {"data":"approval_number"},
+        {"data":"hmo_description"},
+        {"data":"patient_fullname"},
+        {"data": "slug", render: function(data, type, full, meta){
+            
+            let urlerr = `
+                {% url 'update-hmo-bill' 'removethis' %}
+            `
+            let url_split = urlerr.split('/')
+
+            let update_url = `
+                ${url_split[0]}/${url_split[1]}/${data}/update
+            `
+            let delete_url = `
+                ${url_split[0]}/${url_split[1]}/${data}/delete
+            `
+
+            if (type === 'display'){
+                data = `
+                    <button class="btn btn-sm btn-info"><a href="${update_url}">Update</a></button> <button class="btn btn-sm btn-info"><a href="${delete_url}">Delete</a></button>
+
+                `
+                
+
+            } //onclick="jsUpdateHMO(this)"
+            return data;
+        }
+        }
+        
+        ],
+
+        info: false,
+        searching: false,
+        ordering: false,
+
+    });
+    });
+
+    $(document).ready(function(){
+
+    $(".js-create-patient").click(function () {
+            $.ajax({
+            url: "{% url 'create-patient-modal' %}",
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $("#create-patient-modal").modal("show");
+            },
+            success: function (data) {
+                $("#create-patient-modal .modal-content").html(data.html_form);
+            }
+        });
+     });
+
+     $("#create-patient-modal").on("submit", ".js-create-patient-form", function (e) {
+            e.preventDefault()
+            $.ajax({
+                url: "{% url 'create-patient-modal' %}",
+                type: 'post',
+                dataType: 'json',
+                data: $(this).serialize(),
+                headers: {'X-CSRFToken': '{{ csrftoken }}'},
+                success: function(data){
+                    if(data.form_is_valid){
+                        $("#create-patient-modal").modal("hide");  
+                    }else{
+                        $('#create-patient-modal .modal-content').html(data.html_form)
+                    }
+                },
+                error: function(e){
+                    console.log(e)
+                }
+            });
+        });
+
+        $("#update-hmo-bill-modal").on("submit", ".js-update-hmo-bill-form", function (e) {
+            e.preventDefault()
+            $.ajax({ 
+                url: $(this).attr("action"),
+                type: 'post',
+                dataType: 'json',
+                data: $(this).serialize(),
+                headers: {'X-CSRFToken': '{{ csrftoken }}'},
+                success: function(data){         
+                    if(data.form_is_valid){
+                        $("#update-hmo-bill-modal").modal("hide");
+                        $('#create-hmo-bill-table').DataTable().ajax.reload();
+                    }else{
+                        $('#update-hmo-bill-modal .modal-content').html(data.html_form)
+                    }
+                },
+                error: function(e){
+                    console.log(e)
+                }
+            });
+        });
+
+
+    $(function () {
+      $("#id_utility_date").datepicker({
+          format: 'mm/dd/yyyy'
+      });
+    });
+
+    $(function () {
+      $("#id_start_date").datepicker();
+    });
+
+    $(function () {
+      $("#id_end_date").datepicker();
+    });
+
+    $('#printcanine').click(function(){
+        $('#report-print').printThis();
+    });
+   
+
+
+        $('#id_doctor').on('change', function(){
+            console.log($(this).val())
+        });
+
+
+        $('#checkbox-all').on('click',function(){
+            if(this.checked){
+                $('.checkbox').each(function(){
+                    this.checked = true;
+                });
+            }else{
+                $('.checkbox').each(function(){
+                    this.checked = false;
+                });
+            }
+        });       
+
+        $('.checkbox').on('click',function(){
+
+            if($('.checkbox:checked').length == $('.checkbox').length){
+                $('#checkbox-all').prop('checked', true);
+            }else{
+                $('#checkbox-all').prop('checked', false);
+            }
+        });                
+
+        $('#report_table').DataTable({
+            
+            paging: false,
+            info: false,
+            searching: false,
+            ordering: false,
+
+            "order": [[1, 'desc']],
+            // "columnDefs": [ {
+            //     "targets"  : 'no-sort',
+            //     "orderable": false,
+            // }]
+
+        });
+
+         $('#hmo-bill-total').DataTable({
+            dom: "Bfrtip",
+            info: false,
+            searching: false,
+            ordering: false,
+         });
+         
+
+         $('#patients-table').DataTable({
+            info: false,
+            paging: false,
+            searching: false,
+            rowReorder: true,
+            columnDefs: [
+                { orderable: true, className: 'reorder', targets: 0 },
+                { orderable: false, targets: '_all' }
+            ]
+        });
+
+        $('#doctors-table').DataTable({
+            info: false,
+            paging: false,
+            searching: false,
+            rowReorder: true,
+            columnDefs: [
+                { orderable: false, className: 'reorder', targets: 4 },
+                { orderable: true, targets: '_all' }
+            ]
+        });
+
+        $('#hmos-table').DataTable({
+            info: false,
+            paging: false,
+            searching: false,
+            rowReorder: true,
+            columnDefs: [
+                { orderable: false, className: 'reorder', targets: 3 },
+                { orderable: true, targets: '_all' }
+            ]
+        });
+
+        $('#items-table').DataTable({
+            info: false,
+            paging: false,
+            searching: false,
+            rowReorder: true,
+            columnDefs: [
+                { orderable: false, className: 'reorder', targets: 3 },
+                { orderable: true, targets: '_all' }
+            ]
+        });
+
+        $('#hmo-bill-table').DataTable({
+            info: false,
+            paging: true,
+            searching: false,
+            rowReorder: true,
+            columnDefs: [
+                { orderable: false, className: 'reorder', targets: (0, 7) },
+                { orderable: true, targets: '_all' }
+            ]
+        });
+
+
+
+
+        
+
+
+
+         MergeGridCells();
+
+/* ------------------------ To Merge duplicate items in HTML  --------------------- */
+
+        var seen = {};
+            $('.hmo-bill-report-patient-name, .hmo-bill-report-hmo-description').each(function() {
+            var txt = $(this).text();
+            if (seen[txt])
+                $(this).remove();
+            else
+                seen[txt] = true;
+        });
+
+
+    });
+
+    function MergeGridCells() {
+    var dimension_cells = new Array();
+    var dimension_col = null;
+    var columnCount = $("#report_table tr:first th").length;
+    // for (dimension_col = 0; dimension_col < 0; dimension_col++) {
+        // first_instance holds the first instance of identical td
+        var first_instance = null;
+        var second_instance = null;
+        var rowspan = 1;
+        // iterate through rows
+        $("#report_table").find('tr').each(function () {
+
+            // find the td of the correct column (determined by the dimension_col set above)
+            var dimension_td = $(this).find('td:nth-child(' + 2 + ')');
+            var dimension_tx = $(this).find('td:nth-child(' + 1 + ')');
+
+            if (first_instance == null&& second_instance == null ) { // 
+                // must be the first row
+                first_instance = dimension_td;
+                second_instance = dimension_tx;
+                
+            } else if (dimension_td.text() == first_instance.text() && dimension_tx.text() == second_instance.text()) { // 
+                // the current td is identical to the previous
+                // remove the current td
+                dimension_td.remove();
+                dimension_tx.remove();
+                ++rowspan;
+                // increment the rowspan attribute of the first instance
+                first_instance.attr('rowspan', rowspan);
+                first_instance.css('vertical-align', 'top');
+                second_instance.attr('rowspan', rowspan);
+                second_instance.css('vertical-align', 'top');
+
+
+            } else {
+                // this cell is different from the last
+                first_instance = dimension_td;
+                second_instance = dimension_tx;
+                rowspan = 1;
+            }
+        });
+    // }
+}
+
+
+const item = document.querySelector('#id_item');
+const charges = document.querySelector('#id_charges');
+const professional_fee = document.querySelector('#id_professional_fee');
+const doctor = document.querySelector('#select2-id_doctor-container');
+const credit = document.querySelector('#id_credit');
+
+
+//     item.addEventListener('change', () => {
+//         if( item.value == 3 ){
+//         charges.value = 0;
+//         credit.value = 0;
+        
+//     } else {
+//         professional_fee.value = 0;
+//         doctor.textContent = '';
+//         credit.value = 0;
+//     }
+   
+// })
+
+const btn = document.querySelector('.hmo-custom-btn-success')
+const hmo = document.querySelector('#select2-id_item-container');
+
+// btn.addEventListener('click', () =>{
+//     console.log(hmo)
+// })
+
+
+const hmo_table = document.getElementById('create-hmo-bill-table')
+
+function debugMode(){
+    $('#create-hmo-bill-table').DataTable().ajax.reload();   
+}
+
+$('#create-hmo-bill-form').submit(function (e){
+    e.preventDefault();
+    var serializedData = $(this).serialize();
+
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'create-hmo-bill-post' %}",
+        data: serializedData,
+        success: function (response){
+            
+            $('#create-hmo-bill-form').trigger('reset');
+
+            var instance = JSON.parse(response['instance']);
+            var fields = instance[0]['fields'];
+
+            var date_formatted = moment(fields.utility_date).format('MM/DD/YYYY')
+
+            document.querySelector('#id_hmo').value = fields.hmo;
+            document.querySelector('#id_patient').value = fields.patient;
+            document.querySelector('#id_utility_date').value = date_formatted;
+            document.querySelector('#select2-id_item-container').textContent = "";
+
+            
+            $('#create-hmo-bill-table').DataTable().ajax.reload();     
+        },
+
+
+        error: function(response){
+            console.log(response['responseJSON']['error']);
+        }
+
+    })
+})
+
+
+
+// var form = document.getElementById('#create-hmo-bill-form')
+
+// form.addEventListener('submit', function(e){
+//     e.preventDefault()
+//     console.log('Form Submitter')
+    
+//     const url = "{% url 'patient-create-api' %}"
+
+//     fetch(url, {
+//         method: 'POST',
+//         headers:{
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+            
+//         })
+//     })
+    
+// })
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+        
+

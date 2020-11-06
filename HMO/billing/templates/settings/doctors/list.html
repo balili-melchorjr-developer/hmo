@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<a class="btn hmo-custom-btn-success offset-md-10" href="{% url 'create-doctor' %}">Create New Doctor</a>
+
+
+
+			<table class="nowrap hmo-custom-table" id="doctors-table">
+			<thead>
+				<tr>
+					<th>Code</th>
+                    <th>Name</th>
+                    <th>Specialization</th>
+					<th>Status</th>
+					<th></th>
+				</tr>
+			</thead>
+				<tbody>
+				{% for doctor in doctors %}
+				<tr>
+					<td>{{ doctor.code }}</a></td>
+                    <td><a href="{% url 'doctor-detail' doctor.slug %}">{{ doctor.last_name }}, {{ doctor.first_name }}</a></td>
+                    <td>{{ doctor.specialization }}</a></td>
+					{% if doctor.status %}
+						<td>Active</td>
+					{% else %}
+						<td>Inactive</td>
+					{% endif %}
+					<td class="hmo-custom-modifier-right"><a class="btn btn-sm hmo-custom-btn-update" href="{% url 'update-doctor' doctor.slug %}">Update</a><span></span><a class="btn btn-sm hmo-custom-btn-delete" href="{% url 'delete-doctor' doctor.slug %}">Delete</a></td>
+					
+				</tr>
+				{% endfor %}
+			</tbody>
+			</table>
+
+ 
+{% endblock %}

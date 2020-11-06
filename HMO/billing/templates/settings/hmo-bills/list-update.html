@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+<div>
+<form method="GET" action="">
+
+<div class="row">
+	<div class="col-md-4">
+		{{ myFilter.form.hmo|as_crispy_field }}
+	</div>
+	<div class="col-md-4">
+		{{ myFilter.form.patient|as_crispy_field }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-10">
+		<h5>Utility Date</h5>
+		<div class="row">
+			<div class="col-md-4">
+				{{ myFilter.form.start_date|as_crispy_field }}
+			</div>
+			<div class="col-md-4">
+				{{ myFilter.form.end_date|as_crispy_field }}
+			</div>
+			<div class="col-md-2">
+				<button style="margin-top:32px;" class="btn hmo-custom-btn-success" type="submit">Search</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	
+	{{ myFilter.form.media }}
+
+	
+</form>
+</div>
+
+
+<form method="POST" action="">
+{% csrf_token %}
+
+			<table class="nowrap hmo-custom-table recently-table" id="hmo-bill-table">
+				<thead>
+				<tr>
+                    <th><input type="checkbox" name="checks" id="checkbox-all"/></th>
+					<th>Utility Date</th>
+                    <th>Approval Number</th>
+                    <th>HMO</th>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Status</th>
+					<th></th>
+				</tr>    
+			</thead>
+			<tbody>       
+				{% for hmo_bill in hmo_bills %}
+				<tr>
+                    <td><input id="{{ hmo_bill.id }}" class="checkbox" type="checkbox" name="check-status" value="{{ hmo_bill.id }}"/></td>
+					<td>{{ hmo_bill.utility_date|date:"m/d/Y" }}</td>
+                    <td>{{ hmo_bill.approval_number }}</td>
+                    <td>{{ hmo_bill.hmo.description }}</td>	
+                    <td>{{ hmo_bill.patient }}</td>	
+					<td>{{ hmo_bill.doctor.last_name }}</td>
+					
+					{% if hmo_bill.bill_status == 'Encoded' %}
+						<td><span class="status-encoded">Encoded</span></td>
+					{% elif hmo_bill.bill_status == 'Pending' %}
+						<td><span class="status-pending">Pending</span></td>
+					{% else %}
+						<td><span class="status-billed">Billed</span></td>
+					{% endif %}			
+
+					<td><a class="btn btn-sm hmo-custom-btn-update" href="{% url 'update-hmo-bill' hmo_bill.slug %}">Update</a><span></span><a class="btn btn-sm hmo-custom-btn-delete" href="{% url 'delete-hmo-bill' hmo_bill.slug %}">Delete</a></td>
+					
+				</tr>
+				{% endfor %}
+			</tbody>
+			</table>
+
+			<button class="btn hmo-custom-btn-success" type="submit">Create SOA</button>
+		</div>
+	</div>
+</div>
+
+
+
+</form>
+
+
+ 
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<a href="{% url 'home'%}">HMO Bill</a>
+
+<div id="report-print">
+
+    <div class="report-header col-md-6 offset-3">
+        <h6>Adventist Medical Center and College Manila, Inc</h6>
+        <h6>1975 Donada Street, Pasay City</h6>
+        <h6>Tel. No. 525-9191 to 96; 525-9201 to06; FAX 524-3256</h6>
+    </div>
+
+{% for item in soa %}
+
+    <p class="hmo-bill-report-hmo-description">ATTENTION: {{ item.hmo_bill.hmo.description }}</p>
+    
+{% endfor %}
+
+			<table class="nowrap" id="report_table">
+
+                <thead>                  
+				<tr>
+                    <th>Utility Date</th>
+                    <th>Patient Name</th>
+                    <th>Description</th>
+                    <th>Charges</th>
+                    <th>Professional Fees</th>
+                    <th>Credit</th>
+                    <th>Total</th>
+                </tr> 
+            </thead>
+            
+            <tbody>        
+				{% for item in soa %}
+				<tr>
+                    <td>{{ item.hmo_bill.utility_date }}</td>
+                    <td>{{ item.hmo_bill.patient }}</td>
+                    {% if item.item.id == 3%}
+                        <td>{{ item.hmo_bill.doctor.last_name }}</td>
+                    {% else %}
+                        <td>{{ item.hmo_bill.item.description }}</td>
+                    {% endif %}
+                    {% if item.hmo_bill.charges %}
+                    <td>{{ item.hmo_bill.charges }}</td>
+                    {% else %}
+                        <td>0.00</td>
+                    {% endif %}
+                    {% if item.hmo_bill.professional_fee %}
+                        <td>{{ item.hmo_bill.professional_fee }}</td>
+                    {% else %}
+                        <td>0.00</td>
+                    {% endif %}	
+                    {% if item.hmo_bill.credit %}
+                    <td>{{ item.hmo_bill.credit }}</td>	
+                    {% else %}
+                        <td>0.00</td>
+                    {% endif %}	
+                    <td>{{ item.hmo_bill.total }}</td> 
+                {% endfor %}
+            </tr>
+            
+            <tr class="solid-sample"> 
+                <td></td>
+                <td></td>
+                <td></td>
+               <td>{{ total_charges }}</td>
+               <td>{{ total_professional_fee }}</td>
+               <td>{{ total_credit }}</td>
+               <td>{{ total_balance }}</td>
+            </tr>
+            
+            </tbody>
+            </table>
+        </div>
+        <div style="margin-top:12px;"><button id="printcanine">Print Us</button></div>
+        
+ 
+{% endblock %}

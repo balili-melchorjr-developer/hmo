@@ -1,0 +1,51 @@
+{% load crispy_forms_tags %}
+<form method="POST" action="" id="create-hmo-bill-form" >
+  {% csrf_token %}
+  <div class="create-hmo-bill" id="create-hmo-bill-form">
+      <div class="row">
+          <div class="form-group col-md-3">
+              {{ form.hmo|as_crispy_field }}
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-4 custom-margin-top">
+              {{ form.patient|as_crispy_field }}        
+          </div>
+          <div class="">
+              <a class="js-create-patient" type="button"><i class="fa fa-plus"></i></a>
+          </div>
+          <div class="form-group-sm col-md-3 custom-margin-top">   
+              {{ form.utility_date|as_crispy_field }}
+          </div>
+          <div class="form-group col-md-3 custom-margin-top">            
+              {{ form.approval_number|as_crispy_field }}
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-3 custom-margin-top">
+              {{ form.item|as_crispy_field }}
+          </div>
+          <div class="form-group col-md-3 charges custom-margin-top">
+              {{ form.charges|as_crispy_field }}
+          </div>
+          <div class="professional">
+              <div class="row">
+                  <div class="form-group col-md-4 custom-margin-top">
+                      {{ form.professional_fee|as_crispy_field }}
+                  </div>
+                  <div class="form-group  col-md-4 custom-margin-top">
+                      {{ form.doctor|as_crispy_field }} {{ doctor.specialization }}
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-4 custom-margin-top">
+              {{ form.credit|as_crispy_field }}
+          </div> 
+          <div class="form-group col-md-4">
+              <button type="submit" id="custom-submit-btn-create-hmo-bill" class="btn btn-sm hmo-custom-btn-success">Create</button>
+          </div>
+      </div> 
+  </div>
+</form>

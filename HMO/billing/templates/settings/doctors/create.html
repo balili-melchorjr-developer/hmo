@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-3">
+            {{ form.code|as_crispy_field }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            {{ form.last_name|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-4">
+            {{ form.first_name|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-4">
+            {{ form.middle_name|as_crispy_field }}
+        </div>
+    </div>
+    <div>
+        {{ form.specialization|as_crispy_field }}
+    </div>
+    <div>
+        {{ form.contact_number|as_crispy_field }}
+    </div>
+    <div class="offset-md-10">
+        <button type="submit" class="btn hmo-custom-btn-success">Create</button>
+        <a class="hmo-custom-btn-cancel" href="{% url 'doctor-list' %}">Cancel</a>
+    </div>
+</form>
+
+{% endblock %}
